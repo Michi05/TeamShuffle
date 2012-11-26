@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_flt_delete"
+        android:title="@string/menu_flt_delete"
+        android:orderInCategory="100" />
+    <item android:id="@+id/menu_flt_handic"
+        android:title="@string/menu_flt_handic"
+        android:orderInCategory="100" />
+</menu>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Team Shuffle - game side picker</string>
+    <string name="enter_player">&#8230;player name&#8230;</string>
+    <string name="default_n_teams">2</string>
+    <string name="button_add">Add!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_close">Close</string>
+    <string name="menu_flt_delete">Delete</string>
+    <string name="menu_flt_handic">Set Handicap</string>
+    <string name="title_activity_main">TeamShuffle</string>
+    <string name="title_activity_display_message">Team Shuffle - game side picker</string>
+    <string name="button_make_teams"> .. Make teams now! ..</string>
+    <string name="team_1">Team 1</string>
+    <string name="team_2">Team 2</string>
+
+    <!-- Settings' key names -->
+    <string name="settings_theme">theme_id</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preferences' file strings -->
+    <string name="pref_ask">Ask no. of teams.</string>
+    <string name="pref_ask_summ">Whether if ask for the number of teams or not.</string>
+    
+    <string name="pref_theme">Layout theme.</string>
+    <string name="pref_theme_summ">Combination of colours and shapes to use for the screens.</string>
+    <string-array name="pref_theme_entries">
+    	<item>Light colours</item>
+    	<item>Dark colours</item>
+    	<item>Minimalist style</item>
+    	<item>Sportive related theme</item>
+    </string-array>
+    <string-array name="pref_theme_values">
+    	<item>"@style/theme_light"</item>
+    	<item>"@style/theme_dark"</item>
+    	<item>"@style/theme_subtle"</item>
+    	<item>"@style/theme_sportive"</item>
+    </string-array>
+    
+</resources>

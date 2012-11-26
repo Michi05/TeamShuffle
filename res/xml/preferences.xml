@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="pref_ask"
+        android:title="@string/pref_ask"
+        android:summary="@string/pref_ask_summ"
+        android:defaultValue="true" />
+<!--         android:dependency="pref_sync" -->
+    <ListPreference
+        android:key="pref_theme"
+        android:title="@string/pref_theme"
+        android:dialogTitle="@string/pref_theme_summ"
+        android:entries="@array/pref_theme_entries"
+        android:entryValues="@array/pref_theme_values"
+        android:defaultValue="@style/theme_sportive" />
+</PreferenceScreen>

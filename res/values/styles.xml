@@ -1,0 +1,14 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="theme_light" parent="android:Theme.Light">
+        <item name="android:id">@+id/theme_light</item>
+    </style>
+    <style name="theme_subtle" parent="android:Theme.Dialog" />
+    <style name="theme_dark" parent="android:Theme" />
+    <style name="theme_sportive" parent="android:Theme.Light">
+        <item name="android:windowBackground">@drawable/background_rugby</item>
+<!--        <item name="android:windowBackground">@drawable/texture_corkboard_better</item> -->
+<!--       <item name="android:background">@android:drawable/dialog_frame</item> -->
+    </style>
+
+</resources>
