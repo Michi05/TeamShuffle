@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import com.example.tutorialapp.R.dimen;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -79,19 +81,58 @@ public class DisplayMessageActivity extends Activity {
     	for (int i=0; i<teams.size(); i++)
     		powerAdapterNineThousen.add(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
 
-        // TODO: linear_layout tiene que ser horizontal imbécil ¬¬ y copiar las propiedades de los listView (del código)
-        LinearLayout linear_layout = (LinearLayout) findViewById(R.id.listViewLayout);
-    	for (int i=0; i<teams.size(); i++) {
+        // Defining layout parameters to use:
+		LinearLayout.LayoutParams title_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT ,1);
+		String word_team = getResources().getString(R.string.word_team);
+		float text_size = getResources().getDimension(R.dimen.Title1);
+
+        LinearLayout left_layout = (LinearLayout) findViewById(R.id.teamColumnLeft);
+        for (int i=0; i<teams.size(); i+=2) {
+        	// First of all the team number:
+            TextView team_title = new TextView(this);
+            team_title.setLayoutParams(title_params);
+            team_title.setText(word_team.concat(String.valueOf(i+1)));
+            team_title.setTextSize(text_size);
+            left_layout.addView(team_title);
+        	
+    		ListView listView01 = new ListView(this);
+    		listView01.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    		listView01.setLayoutParams(layout_params);
+    		listView01.bringToFront();
+    		listView01.setVisibility(ListView.VISIBLE);
+
+    		// LayoutParams object must be created and set and included in the "addView" call
+    		left_layout.addView(listView01);
+
+            TextView another = new TextView(this);
+            another.setLayoutParams(title_params);
+            another.setText(String.valueOf(teams.get(i).size()));
+            left_layout.addView(another);
+
+        }
+        
+        LinearLayout right_layout = (LinearLayout) findViewById(R.id.teamColumnRight);
+        for (int i=1; i<teams.size(); i+=2) {
+        	// First of all the team number:
+            TextView team_title = new TextView(this);
+            team_title.setLayoutParams(title_params);
+            team_title.setText(word_team.concat(String.valueOf(i+1)));
+            team_title.setTextSize(text_size);
+            right_layout.addView(team_title);
+        	
+//    		ListView listView01 = (ListView) findViewById(R.id.listView1);
     		ListView listView01 = new ListView(this);
     		listView01.setClickable(false);
     		listView01.setLongClickable(false);
     		listView01.setDuplicateParentStateEnabled(false);
-    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    		listView01.setVisibility(ListView.VISIBLE);
 
-    		// LayoutParams object must be created and set before
-    		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT ,1);
-    		linear_layout.addView(listView01, layout_params);
-    	}
+    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    		right_layout.addView(listView01, layout_params);
+        }
+
     }
 
     @Override

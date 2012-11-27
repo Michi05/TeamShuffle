@@ -12,8 +12,7 @@
     <string name="title_activity_main">TeamShuffle</string>
     <string name="title_activity_display_message">Team Shuffle - game side picker</string>
     <string name="button_make_teams"> .. Make teams now! ..</string>
-    <string name="team_1">Team 1</string>
-    <string name="team_2">Team 2</string>
+    <string name="word_team">Team </string>
 
     <!-- Settings' key names -->
     <string name="settings_theme">theme_id</string>
