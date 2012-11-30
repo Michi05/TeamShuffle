@@ -2,6 +2,7 @@ package com.example.tutorialapp;
 
 import java.util.ArrayList;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,6 +26,8 @@ public class MainActivity extends Activity {
     
     public final static int DEFAULT_THEME = R.style.theme_sportive;
     public static int CURRENT_THEME = R.style.theme_sportive;
+    public int no_of_teams;
+    public boolean ask_for_teams;
 
     private ArrayList<String> players;
     private ArrayAdapter<String> listAdapter;
@@ -55,14 +58,24 @@ public class MainActivity extends Activity {
     // Method to restore all the application settings
     private void restoreSettings(){
     	SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        String nombreTema = settings.getString(SettingsActivity.KEY_PREF_THEME, "_sportive");
-        if (nombreTema.contains("_dark"))
+
+        // Restoring the number of teams for each shuffling
+    	String default_n_teams = getResources().getString(R.string.default_n_teams);
+        no_of_teams = Integer.valueOf(settings.getString(SettingsActivity.KEY_NO_OF_TEAMS, default_n_teams));
+        
+        // Restoring the user choice about asking the no. of teams
+    	String default_ask_teams = getResources().getString(R.string.default_ask_teams);
+        ask_for_teams = Boolean.getBoolean(settings.getString(SettingsActivity.KEY_ASK_FOR_TEAMS, default_ask_teams));
+    	
+    	// Restoring the theme to show
+        String theme_name = settings.getString(SettingsActivity.KEY_PREF_THEME, "_sportive");
+        if (theme_name.contains("_dark"))
         	CURRENT_THEME = R.style.theme_dark;
-        else if (nombreTema.contains("_light"))
+        else if (theme_name.contains("_light"))
         	CURRENT_THEME = R.style.theme_light;
-        else if (nombreTema.contains("_subtle"))
+        else if (theme_name.contains("_subtle"))
         	CURRENT_THEME = R.style.theme_subtle;
-        else if (nombreTema.contains("_sportive"))
+        else if (theme_name.contains("_sportive"))
         	CURRENT_THEME = R.style.theme_sportive;
     }
     

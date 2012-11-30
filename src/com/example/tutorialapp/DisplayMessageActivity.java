@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -43,7 +44,7 @@ public class DisplayMessageActivity extends Activity {
         	
         	// After that, the team for each player 'i' is "i % noOfTeams"
         	//(...+1 just for human comprehension)
-        	final int noOfTeams = 2;
+        	final int noOfTeams = 5;
         	teams = new ArrayList<ArrayList<String>>();
         	for (int i=0; i< noOfTeams; i++) // Create lists
         		teams.add(new ArrayList<String>());
@@ -53,24 +54,6 @@ public class DisplayMessageActivity extends Activity {
         // Set the text view as the activity layout
         setContentView(R.layout.activity_display_message);
         setUpListView(teams); // ALWAYS AFTER "setContentView"
-    }
-    
-    private LinearLayout createLayout(){
-    	LinearLayout layout = new LinearLayout(this);
-
-    	// Set up layout
-        layout.setLayoutParams(new ViewGroup.LayoutParams(-1,-1));
-//        layout.setBackgroundColor(R.color.blue);
-    	
-    	// Write a title
-        TextView question = new TextView(this);
-        question.setLayoutParams(new ViewGroup.LayoutParams(-1,-2));
-        question.setTextColor(Color.GREEN); // getResources().getColor(R.);
-        question.setTextSize(1,14);
-        question.setText("This is question1");
-        layout.addView(question);
-    	
-    	return layout;
     }
     // TODO: poner la opción CLOSE en el menú inferior dentro de la segunda actividad
 
@@ -83,12 +66,12 @@ public class DisplayMessageActivity extends Activity {
 
         // Defining layout parameters to use:
 		LinearLayout.LayoutParams title_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT ,1);
+		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 		String word_team = getResources().getString(R.string.word_team);
 		float text_size = getResources().getDimension(R.dimen.Title1);
 
         LinearLayout left_layout = (LinearLayout) findViewById(R.id.teamColumnLeft);
-        for (int i=0; i<teams.size(); i+=2) {
+        for (int i=0; i<teams.size(); i+=2) { // Odd team numbers
         	// First of all the team number:
             TextView team_title = new TextView(this);
             team_title.setLayoutParams(title_params);
@@ -97,24 +80,20 @@ public class DisplayMessageActivity extends Activity {
             left_layout.addView(team_title);
         	
     		ListView listView01 = new ListView(this);
-    		listView01.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
     		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
-    		listView01.setLayoutParams(layout_params);
-    		listView01.bringToFront();
-    		listView01.setVisibility(ListView.VISIBLE);
+    		if ((i/2)%2==0)
+    			listView01.setBackgroundColor(Color.GRAY);
+    		else
+    			listView01.setBackgroundColor(Color.LTGRAY);
+    		listView01.setDividerHeight(0);
+//    		listView01.setLayoutParams(layout_params);
 
     		// LayoutParams object must be created and set and included in the "addView" call
-    		left_layout.addView(listView01);
-
-            TextView another = new TextView(this);
-            another.setLayoutParams(title_params);
-            another.setText(String.valueOf(teams.get(i).size()));
-            left_layout.addView(another);
-
+    		left_layout.addView(listView01, layout_params);
         }
         
         LinearLayout right_layout = (LinearLayout) findViewById(R.id.teamColumnRight);
-        for (int i=1; i<teams.size(); i+=2) {
+        for (int i=1; i<teams.size(); i+=2) { // Even team numbers
         	// First of all the team number:
             TextView team_title = new TextView(this);
             team_title.setLayoutParams(title_params);
@@ -122,14 +101,15 @@ public class DisplayMessageActivity extends Activity {
             team_title.setTextSize(text_size);
             right_layout.addView(team_title);
         	
-//    		ListView listView01 = (ListView) findViewById(R.id.listView1);
     		ListView listView01 = new ListView(this);
-    		listView01.setClickable(false);
-    		listView01.setLongClickable(false);
-    		listView01.setDuplicateParentStateEnabled(false);
-    		listView01.setVisibility(ListView.VISIBLE);
-
     		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    		if ((i/2)%2==1)
+    			listView01.setBackgroundColor(Color.GRAY);
+    		else
+    			listView01.setBackgroundColor(Color.LTGRAY);
+    		listView01.setDividerHeight(0);
+//    		listView01.setLayoutParams(layout_params);
+
     		right_layout.addView(listView01, layout_params);
         }
 
@@ -145,6 +125,22 @@ public class DisplayMessageActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_display_message, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+	        case R.id.menu_settings:
+	        	Intent intent = new Intent(this, SettingsActivity.class);
+	            startActivity(intent);
+	        	return true;
+            case R.id.menu_close:
+                finish(); // TODO: This is only for the activity; i.e. it means back
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -7,7 +7,9 @@ import android.preference.PreferenceActivity;
 
 public class SettingsActivity extends PreferenceActivity {
     public final static String KEY_PREF_THEME = "pref_theme";
-
+    public final static String KEY_NO_OF_TEAMS = "pref_teams_number";
+    public final static String KEY_ASK_FOR_TEAMS = "pref_ask_teams";
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -22,7 +24,7 @@ public class SettingsActivity extends PreferenceActivity {
     	// When the user tries to go back, the activity 
     	//notifies that this won't change the current theme
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setMessage("Themes won't change until app is restarted")
+    	builder.setMessage(getResources().getText(R.string.warning_settings))
     	       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {
     	                SettingsActivity.this.finish();
