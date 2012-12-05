@@ -5,10 +5,9 @@
         android:title="@string/pref_ask"
         android:summary="@string/pref_ask_summ"
         android:disableDependentsState="true"
-        
         android:defaultValue="true" />
     
-<!--  El número de equipos a crear. Sólo se puede modificar si no se pregunta cada vez. -->
+<!--  The amount of teams can only be set in case that the same is not asked each time. -->
     <EditTextPreference 
         android:key="pref_noOfTeams"
         android:title="@string/pref_noOfTeams"

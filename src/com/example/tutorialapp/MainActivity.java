@@ -14,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewDebug.FlagToString;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+//TODO: Feature: remember old names. But being able to remove them or clean.
 
 public class MainActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -120,6 +123,10 @@ public class MainActivity extends Activity {
 	        case R.id.menu_settings:
 	        	Intent intent = new Intent(this, SettingsActivity.class);
 	            startActivity(intent);
+	        	return true;
+	        case R.id.menu_clean:
+        		players.clear();
+        		listAdapter.notifyDataSetChanged();
 	        	return true;
             case R.id.menu_close:
                 finish();

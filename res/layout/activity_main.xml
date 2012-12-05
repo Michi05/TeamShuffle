@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/main_instructions"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 	<LinearLayout
 	    xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:tools="http://schemas.android.com/tools"
+	    android:id="@+id/main_layout_top"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_below="@id/textView1"
 	    android:orientation="horizontal"
 	    android:visibility="visible" >
 	
@@ -29,42 +39,25 @@
 	    
 	</LinearLayout>
     
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:layout_weight="1"
-	    android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:orientation="horizontal">
+	 <ListView
+	     android:id="@+id/listView1"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content"
+	     android:layout_below="@id/main_layout_top"
+	     android:layout_centerHorizontal="true"
+	     android:choiceMode="singleChoice"
+	     android:dividerHeight="0dp"
+	     android:footerDividersEnabled="false"
+	     android:headerDividersEnabled="false"
+	     android:paddingLeft="@dimen/DefaultMargin"
+	     android:scrollbars="vertical" />
 
-		 <ListView
-		     android:id="@+id/listView1"
-		     android:layout_width="match_parent"
-		     android:layout_height="match_parent"
-		 />
-	</LinearLayout>
-    
-	<LinearLayout
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="bottom|center"
-	    android:gravity="bottom|center"
-	    android:orientation="horizontal" >
-	
-	    <EditText android:id="@+id/n_teams"
-	        android:layout_weight="1"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:hint="@string/default_n_teams"
-		/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    	android:layout_alignParentBottom="true"
+    	android:layout_alignParentRight="true"
+        android:onClick="makeTeams"
+        android:text="@string/button_make_teams" />
 
-	    <Button
-	        android:layout_width="wrap_content"
-	        android:layout_height="match_parent"
-	        android:layout_gravity="bottom|center"
-	        android:onClick="makeTeams"
-	        android:text="@string/button_make_teams" />
-
-	</LinearLayout>
-</LinearLayout>
+</RelativeLayout>

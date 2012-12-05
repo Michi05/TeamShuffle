@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+   	<!--  App specific texts (title, desc, etc.) -->
     <string name="app_name">Team Shuffle - game side picker</string>
-    <string name="enter_player">&#8230;player name&#8230;</string>
-    <string name="button_add">Add!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="menu_close">Close</string>
-    <string name="menu_flt_delete">Delete</string>
-    <string name="menu_flt_handic">Set Handicap</string>
     <string name="title_activity_main">TeamShuffle</string>
     <string name="title_activity_display_message">Team Shuffle - game side picker</string>
-    <string name="button_make_teams"> .. Make teams now! ..</string>
+    
+    <!--  Main layout texts -->
+    <string name="enter_player">&#8230;player name&#8230;</string>
+    <string name="button_add">Add!</string>
+    <string name="main_instructions">Please insert players:</string>
+    
+    <string name="button_make_teams"> Make teams \>\></string>
     <string name="word_team">Team </string>
     <string name="warning_settings">THEMES won\'t change until app is restarted</string>
+
+    <!--  Options Menus -->
+    <string name="menu_settings">Settings</string>
+    <string name="menu_clean">Clean list</string>
+    <string name="menu_back">Back</string>
+    <string name="menu_close">Close</string>
+    
+    <!--  Item Menu -->
+    <string name="menu_flt_delete">Delete</string>
+    <string name="menu_flt_handic">Set Handicap</string>
     
     <!-- Default Settings -->
     <string name="default_n_teams">2</string>

@@ -1,21 +1,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:baselineAligned="false"
     android:orientation="horizontal"
+    
+    android:scrollbars="vertical"
+    
     android:paddingLeft="16dp"
     android:paddingRight="16dp" >
     
    	<LinearLayout
     	    xmlns:android="http://schemas.android.com/apk/res/android"
     	    xmlns:tools="http://schemas.android.com/tools"
-    	    android:id="@+id/teamColumnLeft"
     	    android:layout_weight="1"
     	    android:layout_width="0dp"
     	    android:layout_height="wrap_content"
     	    android:contentDescription="@string/word_team"
-    	    android:orientation="vertical" >
+    	    android:scrollbars="none"
+    	    android:orientation="vertical" 
+
+    	    android:id="@+id/teamColumnLeft">
 
     </LinearLayout>
     
@@ -24,7 +29,7 @@
 	    android:layout_weight="1"
 	    android:layout_width="0dp"
 	    android:layout_height="wrap_content"
-	    
+   	    android:scrollbars="none"
 	    android:orientation="vertical"
 
 		android:id="@+id/teamColumnRight">

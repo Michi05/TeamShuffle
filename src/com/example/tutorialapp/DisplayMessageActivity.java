@@ -18,8 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-// TODO: Feature: remember old names. But being able to remove them or clean.
-
 public class DisplayMessageActivity extends Activity {
 	LinearLayout layout;
 	ArrayList<ArrayList<String>> teams;
@@ -55,7 +53,6 @@ public class DisplayMessageActivity extends Activity {
         setContentView(R.layout.activity_display_message);
         setUpListView(teams); // ALWAYS AFTER "setContentView"
     }
-    // TODO: poner la opción CLOSE en el menú inferior dentro de la segunda actividad
 
 // Precondition: The "setContentView" method must be already run
     private void setUpListView(ArrayList<ArrayList<String>> teams){
@@ -86,8 +83,9 @@ public class DisplayMessageActivity extends Activity {
     		else
     			listView01.setBackgroundColor(Color.LTGRAY);
     		listView01.setDividerHeight(0);
-//    		listView01.setLayoutParams(layout_params);
-
+//    		listView01.setVerticalScrollBarEnabled(false);
+//    		listView01.setHorizontalScrollBarEnabled(false);
+//    		listView01.setScrollBarStyle(0);
     		// LayoutParams object must be created and set and included in the "addView" call
     		left_layout.addView(listView01, layout_params);
         }
@@ -108,8 +106,7 @@ public class DisplayMessageActivity extends Activity {
     		else
     			listView01.setBackgroundColor(Color.LTGRAY);
     		listView01.setDividerHeight(0);
-//    		listView01.setLayoutParams(layout_params);
-
+    		// LayoutParams object must be created and set and included in the "addView" call
     		right_layout.addView(listView01, layout_params);
         }
 
@@ -135,8 +132,8 @@ public class DisplayMessageActivity extends Activity {
 	        	Intent intent = new Intent(this, SettingsActivity.class);
 	            startActivity(intent);
 	        	return true;
-            case R.id.menu_close:
-                finish(); // TODO: This is only for the activity; i.e. it means back
+            case R.id.menu_back:
+            	finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
