@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -62,53 +63,61 @@ public class DisplayMessageActivity extends Activity {
     		powerAdapterNineThousen.add(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
 
         // Defining layout parameters to use:
-		LinearLayout.LayoutParams title_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams listView_layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 		String word_team = getResources().getString(R.string.word_team);
 		float text_size = getResources().getDimension(R.dimen.Title1);
 
         LinearLayout left_layout = (LinearLayout) findViewById(R.id.teamColumnLeft);
         for (int i=0; i<teams.size(); i+=2) { // Odd team numbers
-        	// First of all the team number:
+        	// Create views
             TextView team_title = new TextView(this);
-            team_title.setLayoutParams(title_params);
+    		ListView listView01 = new ListView(this);
+
+    		// First of all the team number:
             team_title.setText(word_team.concat(String.valueOf(i+1)));
             team_title.setTextSize(text_size);
-            left_layout.addView(team_title);
-        	
-    		ListView listView01 = new ListView(this);
-    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
-    		if ((i/2)%2==0)
+
+            if ((i/2)%2==0)
     			listView01.setBackgroundColor(Color.GRAY);
     		else
     			listView01.setBackgroundColor(Color.LTGRAY);
     		listView01.setDividerHeight(0);
-//    		listView01.setVerticalScrollBarEnabled(false);
-//    		listView01.setHorizontalScrollBarEnabled(false);
-//    		listView01.setScrollBarStyle(0);
+    		listView01.setVerticalScrollBarEnabled(false);
+    		listView01.setScrollBarStyle(0);
+            listView01.addHeaderView(team_title);
+    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    		
     		// LayoutParams object must be created and set and included in the "addView" call
-    		left_layout.addView(listView01, layout_params);
+    		left_layout.addView(listView01, listView_layout);
         }
         
         LinearLayout right_layout = (LinearLayout) findViewById(R.id.teamColumnRight);
         for (int i=1; i<teams.size(); i+=2) { // Even team numbers
-        	// First of all the team number:
+        	// Create views
             TextView team_title = new TextView(this);
-            team_title.setLayoutParams(title_params);
+    		ListView listView01 = new ListView(this);
+
+    		// First of all the team number:
             team_title.setText(word_team.concat(String.valueOf(i+1)));
             team_title.setTextSize(text_size);
-            right_layout.addView(team_title);
-        	
-    		ListView listView01 = new ListView(this);
-    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+
+            // Config the list view
     		if ((i/2)%2==1)
     			listView01.setBackgroundColor(Color.GRAY);
     		else
     			listView01.setBackgroundColor(Color.LTGRAY);
     		listView01.setDividerHeight(0);
+    		listView01.setScrollBarStyle(0);
+    		listView01.setVerticalScrollBarEnabled(false);
+            listView01.addHeaderView(team_title);
+    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+
     		// LayoutParams object must be created and set and included in the "addView" call
-    		right_layout.addView(listView01, layout_params);
+    		right_layout.addView(listView01, listView_layout);
         }
+        
+        // TODO: I'm following this right now: http://stackoverflow.com/questions/3506103/how-can-i-automatically-size-listview-so-it-doesnt-scroll
+//        Log.e("TeamShuffle Exception", "Found the following exception: " + e);
 
     }
 
