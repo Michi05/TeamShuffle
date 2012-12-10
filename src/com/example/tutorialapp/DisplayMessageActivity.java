@@ -67,47 +67,20 @@ public class DisplayMessageActivity extends Activity {
 		String word_team = getResources().getString(R.string.word_team);
 		float text_size = getResources().getDimension(R.dimen.Title1);
 
-        LinearLayout left_layout = (LinearLayout) findViewById(R.id.teamColumnLeft);
-        for (int i=0; i<teams.size(); i+=2) { // Odd team numbers
+		LinearLayout column_layout_01 = (LinearLayout) findViewById(R.id.teamColumnMain);
+        for (int i=0; i<teams.size(); i++) {
         	// First of all the team number:
             TextView team_title = new TextView(this);
             team_title.setLayoutParams(title_params);
             team_title.setText(word_team.concat(String.valueOf(i+1)));
             team_title.setTextSize(text_size);
-            left_layout.addView(team_title);
+            column_layout_01.addView(team_title);
         	
     		ListView listView01 = new ListView(this);
     		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
-    		if ((i/2)%2==0)
-    			listView01.setBackgroundColor(Color.GRAY);
-    		else
-    			listView01.setBackgroundColor(Color.LTGRAY);
-    		listView01.setDividerHeight(0);
-//    		listView01.setVerticalScrollBarEnabled(false);
-//    		listView01.setHorizontalScrollBarEnabled(false);
-//    		listView01.setScrollBarStyle(0);
-    		// LayoutParams object must be created and set and included in the "addView" call
-    		left_layout.addView(listView01, layout_params);
-        }
-        
-        LinearLayout right_layout = (LinearLayout) findViewById(R.id.teamColumnRight);
-        for (int i=1; i<teams.size(); i+=2) { // Even team numbers
-        	// First of all the team number:
-            TextView team_title = new TextView(this);
-            team_title.setLayoutParams(title_params);
-            team_title.setText(word_team.concat(String.valueOf(i+1)));
-            team_title.setTextSize(text_size);
-            right_layout.addView(team_title);
-        	
-    		ListView listView01 = new ListView(this);
-    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
-    		if ((i/2)%2==1)
-    			listView01.setBackgroundColor(Color.GRAY);
-    		else
-    			listView01.setBackgroundColor(Color.LTGRAY);
     		listView01.setDividerHeight(0);
     		// LayoutParams object must be created and set and included in the "addView" call
-    		right_layout.addView(listView01, layout_params);
+    		column_layout_01.addView(listView01, layout_params);
         }
 
     }

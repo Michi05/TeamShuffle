@@ -1,44 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/teamColumnMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false"
-    android:orientation="horizontal"
-    
-    android:scrollbars="vertical"
-    
+    android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp" >
     
-   	<LinearLayout
-    	    xmlns:android="http://schemas.android.com/apk/res/android"
-    	    xmlns:tools="http://schemas.android.com/tools"
-    	    android:layout_weight="1"
-    	    android:layout_width="0dp"
-    	    android:layout_height="wrap_content"
-    	    android:contentDescription="@string/word_team"
-    	    android:scrollbars="none"
-    	    android:orientation="vertical" 
-
-    	    android:id="@+id/teamColumnLeft">
-
-    </LinearLayout>
-    
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:layout_weight="1"
-	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
-   	    android:scrollbars="none"
-	    android:orientation="vertical"
-
-		android:id="@+id/teamColumnRight">
-<!-- 		<TextView
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/word_team"
-		    android:textSize="@dimen/Title1"
-		    android:textStyle="italic|bold"
-		    tools:context=".DisplayMessageActivity" /> -->
-    </LinearLayout>
 </LinearLayout>
