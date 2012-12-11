@@ -62,8 +62,6 @@ public class DisplayMessageActivity extends Activity {
     	for (int i=0; i<teams.size(); i++)
     		powerAdapterNineThousen.add(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
 
-        // Defining layout parameters to use:
-		LinearLayout.LayoutParams listView_layout = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 		String word_team = getResources().getString(R.string.word_team);
 		float text_size = getResources().getDimension(R.dimen.Title1);
 
@@ -88,7 +86,7 @@ public class DisplayMessageActivity extends Activity {
     		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
     		
     		// LayoutParams object must be created and set and included in the "addView" call
-    		left_layout.addView(listView01, listView_layout);
+    		left_layout.addView(listView01);
         }
         
         LinearLayout right_layout = (LinearLayout) findViewById(R.id.teamColumnRight);
@@ -113,7 +111,7 @@ public class DisplayMessageActivity extends Activity {
     		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
 
     		// LayoutParams object must be created and set and included in the "addView" call
-    		right_layout.addView(listView01, listView_layout);
+    		right_layout.addView(listView01);
         }
         
         // TODO: I'm following this right now: http://stackoverflow.com/questions/3506103/how-can-i-automatically-size-listview-so-it-doesnt-scroll
