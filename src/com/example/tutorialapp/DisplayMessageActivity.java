@@ -10,11 +10,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager.LayoutParams;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -64,36 +66,39 @@ public class DisplayMessageActivity extends Activity {
 
 		String word_team = getResources().getString(R.string.word_team);
 		float text_size = getResources().getDimension(R.dimen.Title1);
+		
+		// Create layout configuration
+		LayoutParams grid01_layout = new LayoutParams();
+		grid01_layout.width = LayoutParams.MATCH_PARENT;
+		grid01_layout.height = LayoutParams.WRAP_CONTENT;
 
         LinearLayout left_layout = (LinearLayout) findViewById(R.id.teamColumnLeft);
-        for (int i=0; i<teams.size(); i+=2) { // Odd team numbers
+        for (int i=0; i<teams.size(); i+=2) { // Even team numbers
         	// Create views
             TextView team_title = new TextView(this);
-    		ListView listView01 = new ListView(this);
+    		GridView gridView01 = new GridView(this);
 
     		// First of all the team number:
             team_title.setText(word_team.concat(String.valueOf(i+1)));
             team_title.setTextSize(text_size);
 
             if ((i/2)%2==0)
-    			listView01.setBackgroundColor(Color.GRAY);
+    			gridView01.setBackgroundColor(Color.GRAY);
     		else
-    			listView01.setBackgroundColor(Color.LTGRAY);
-    		listView01.setDividerHeight(0);
-    		listView01.setVerticalScrollBarEnabled(false);
-    		listView01.setScrollBarStyle(0);
-            listView01.addHeaderView(team_title);
-    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    			gridView01.setBackgroundColor(Color.LTGRAY);
+    		gridView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    		gridView01.setLayoutParams(grid01_layout);
     		
-    		// LayoutParams object must be created and set and included in the "addView" call
-    		left_layout.addView(listView01);
+    		// Add both Views to the viewGroup in the correct order
+    		left_layout.addView(team_title);
+    		left_layout.addView(gridView01, grid01_layout);
         }
         
         LinearLayout right_layout = (LinearLayout) findViewById(R.id.teamColumnRight);
-        for (int i=1; i<teams.size(); i+=2) { // Even team numbers
+        for (int i=1; i<teams.size(); i+=2) { // Odd team numbers
         	// Create views
             TextView team_title = new TextView(this);
-    		ListView listView01 = new ListView(this);
+    		GridView gridView01 = new GridView(this);
 
     		// First of all the team number:
             team_title.setText(word_team.concat(String.valueOf(i+1)));
@@ -101,17 +106,14 @@ public class DisplayMessageActivity extends Activity {
 
             // Config the list view
     		if ((i/2)%2==1)
-    			listView01.setBackgroundColor(Color.GRAY);
+    			gridView01.setBackgroundColor(Color.GRAY);
     		else
-    			listView01.setBackgroundColor(Color.LTGRAY);
-    		listView01.setDividerHeight(0);
-    		listView01.setScrollBarStyle(0);
-    		listView01.setVerticalScrollBarEnabled(false);
-            listView01.addHeaderView(team_title);
-    		listView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
+    			gridView01.setBackgroundColor(Color.LTGRAY);
+    		gridView01.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, teams.get(i)));
 
-    		// LayoutParams object must be created and set and included in the "addView" call
-    		right_layout.addView(listView01);
+    		// Add both Views to the viewGroup in the correct order
+    		right_layout.addView(team_title);
+    		right_layout.addView(gridView01);
         }
         
         // TODO: I'm following this right now: http://stackoverflow.com/questions/3506103/how-can-i-automatically-size-listview-so-it-doesnt-scroll
