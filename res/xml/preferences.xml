@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <CheckBoxPreference
-        android:key="pref_ask"
+        android:key="pref_ask_teams"
         android:title="@string/pref_ask"
         android:summary="@string/pref_ask_summ"
         android:disableDependentsState="true"
-        android:defaultValue="true" />
+        android:defaultValue="@bool/pref_ask_default" />
+    
+    <Preference
+        android:key="pref_no_of_teams"
+        android:title="@string/pref_noOfTeams"
+        android:summary="@string/pref_noOfTeams_summ"
+        android:dependency="pref_ask_teams"
+        android:defaultValue="@integer/no_of_Teams_default"/>
     
 <!--  The amount of teams can only be set in case that the same is not asked each time. -->
+<!--
     <EditTextPreference 
-        android:key="pref_noOfTeams"
+        android:key="pref_teams_number"
         android:title="@string/pref_noOfTeams"
 		android:dependency="pref_ask"
-        android:defaultValue="@string/pref_noOfTeams_default" />
+        android:defaultValue="@integer/no_of_Teams_default" />
+-->
 
     <ListPreference
         android:key="pref_theme"

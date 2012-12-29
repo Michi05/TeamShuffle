@@ -24,10 +24,6 @@
     <!--  Item Menu -->
     <string name="menu_flt_delete">Delete</string>
     <string name="menu_flt_handic">Set Handicap</string>
-    
-    <!-- Default Settings -->
-    <string name="default_n_teams">2</string>
-    <string name="default_ask_teams">2</string>
 
     <!-- Settings' key names -->
     <string name="settings_theme">theme_id</string>
@@ -37,6 +33,9 @@
     <string name="pref_ask">Ask no. of teams.</string>
     <string name="pref_ask_summ">Whether if ask for the number of teams each time or not.</string>
     
+    <string name="pref_noOfTeams">Number of teams to build.</string>
+    <string name="pref_noOfTeams_summ">The amount of teams in which to divide the players.</string>
+
     <string name="pref_theme">Layout theme.</string>
     <string name="pref_theme_summ">Combination of colours and shapes to use for the screens.</string>
     <string-array name="pref_theme_entries">
@@ -52,8 +51,14 @@
     	<item>"@style/theme_sportive"</item>
     </string-array>
     
-    <string name="pref_noOfTeams">Default number of teams.</string>
-    <string name="pref_noOfTeams_summ">The amount of teams in which to divide the players.</string>
-    <string name="pref_noOfTeams_default">2</string>
+    
+    <!-- Dialog -->
+    <string name="dialog_dontAsk">Go and don\'t ask again</string>
+    <string name="dialog_teams_checkbox">Set as default. Stop asking every time</string>
+    
+    <string name="dialog_query_noOfTeams">How many teams should be given?</string>
+    
+    <string name="dialog_go">Go!</string>
+    <string name="dialog_back">Back</string>
     
 </resources>

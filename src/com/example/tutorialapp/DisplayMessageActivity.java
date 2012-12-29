@@ -4,31 +4,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import com.example.tutorialapp.R.dimen;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager.LayoutParams;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends Activity {
 	LinearLayout layout;
 	ArrayList<ArrayList<String>> teams;
+	int noOfTeams = 1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-    	// Assign a theme according to settings or default
+    	// Assign a theme and number of teams according to settings or default
         setTheme(MainActivity.CURRENT_THEME);
+        loadSettings();
         
         super.onCreate(savedInstanceState);
 
@@ -45,7 +47,6 @@ public class DisplayMessageActivity extends Activity {
         	
         	// After that, the team for each player 'i' is "i % noOfTeams"
         	//(...+1 just for human comprehension)
-        	final int noOfTeams = 5;
         	teams = new ArrayList<ArrayList<String>>();
         	for (int i=0; i< noOfTeams; i++) // Create lists
         		teams.add(new ArrayList<String>());
@@ -148,5 +149,13 @@ public class DisplayMessageActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
     }
+    
+    private void loadSettings(){
+    	SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+ 	   int default_n_teams = getResources().getInteger(R.integer.no_of_Teams_default);
+ 	   noOfTeams = settings.getInt(SettingsActivity.KEY_NO_OF_TEAMS, default_n_teams);
+    }
+    
+
 
 }

@@ -2,7 +2,6 @@ package com.example.tutorialapp;
 
 import java.util.ArrayList;
 
-import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,13 +13,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewDebug.FlagToString;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-//TODO: Feature: remember old names. But being able to remove them or clean.
+//TODO: Feature: remember old names. But being able to remove them or clean. (A list where you can just check those you want to add?)
+//SUPER FEATURE: Suggestions from contacts agenda!!
+//Feature: Only one team means "sorting"
+//Feature: Handicaps or any way to avoid two strong players in the seam team
+//Feature: Move players from team to team
+//Feature: Shuffle matches between teams besides players ("Quick Tournament Maker")
+//Feature: Layout: A floating textbox under the last player instead of the fixed textbox and the button?
+//Feature: Layout: Next screen by swiping from the side with a finger
+//Feature: Share results
+//Feature: Save results
+//Correction: Elastic layout for the teams (it's fixed right now)
+//Correction: Horizontal input is annoying because of having to accept multiple times
+//Correction: Update to non-deprecated versions
+
 
 public class MainActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -63,12 +74,12 @@ public class MainActivity extends Activity {
     	SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Restoring the number of teams for each shuffling
-    	String default_n_teams = getResources().getString(R.string.default_n_teams);
-        no_of_teams = Integer.valueOf(settings.getString(SettingsActivity.KEY_NO_OF_TEAMS, default_n_teams));
+    	int default_n_teams = getResources().getInteger(R.integer.no_of_Teams_default);
+    	no_of_teams = settings.getInt(SettingsActivity.KEY_NO_OF_TEAMS, default_n_teams);
         
         // Restoring the user choice about asking the no. of teams
-    	String default_ask_teams = getResources().getString(R.string.default_ask_teams);
-        ask_for_teams = Boolean.getBoolean(settings.getString(SettingsActivity.KEY_ASK_FOR_TEAMS, default_ask_teams));
+    	boolean default_ask_teams = getResources().getBoolean(R.bool.pref_ask_default);
+        ask_for_teams = settings.getBoolean(SettingsActivity.KEY_ASK_FOR_TEAMS, default_ask_teams);
     	
     	// Restoring the theme to show
         String theme_name = settings.getString(SettingsActivity.KEY_PREF_THEME, "_sportive");
@@ -80,18 +91,6 @@ public class MainActivity extends Activity {
         	CURRENT_THEME = R.style.theme_subtle;
         else if (theme_name.contains("_sportive"))
         	CURRENT_THEME = R.style.theme_sportive;
-    }
-    
-    // UNUSED Method to store settings after changes
-    private void storeSettings(){
-        // We need an Editor object to make preference changes.
-        // All objects are from android.context.Context
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("pref_theme", R.style.theme_light);
-
-        // Commit the edits!
-        editor.commit();
     }
     
     private void setUpListView(){
@@ -152,7 +151,16 @@ public class MainActivity extends Activity {
     public void makeTeams(View view) {
     	Intent intent = new Intent(this, DisplayMessageActivity.class);
         intent.putExtra(EXTRA_DATA, players);
-        startActivity(intent);
+
+        // Apply changes according to last config
+        restoreSettings();
+        
+        if (ask_for_teams) {
+        	AskTeamsDialog newDialog = new AskTeamsDialog(this, intent);
+        	newDialog.show();
+        }
+        else
+        	startActivity(intent);
     }
     
     // For the context menu for handling each item in the list
